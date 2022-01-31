@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: chat-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/shervin
+    username: shervin
+    initialization-mode: always
+  jpa:
+    properties:
+      hibernate:
+        default_schema: chat_service
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    schemas: ${spring.jpa.properties.hibernate.default_schema}
+    baseline-on-migrate: true
+  messages:
+    basename: messages/messages
+  jackson:
+    default-property-inclusion: non_null
+  stream:
+    mqtt:
+      host: tcp://localhost:1883
+      client-id-prefix: ${spring.application.name}
+      username: mqtt_admin
+      timeout: 1000
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://172.17.0.1:8761/eureka
+
+#logging:
+#  level:
+#    com: debug
+#    org: debug
+server:
+  forward-headers-strategy: framework
+
+firebase:
+  app: keys
+  credentials: /etc/keys/keys-310815-firebase-adminsdk-az7vq-3f1b75af96.json
+
+app:
+  host: http://localhost:8080
+  url: ${app.host}/${spring.application.name}
+  chat:
+    mqtt:
+      host: tcp://localhost:1883
+      users-topic-prefix: /chat_service/users/
+      users-inbox-topic-suffix: /inbox
+      users-outbox-topic-suffix: /outbox

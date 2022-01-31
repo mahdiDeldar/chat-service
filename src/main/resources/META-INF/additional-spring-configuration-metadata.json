@@ -1,0 +1,54 @@
+{
+  "properties": [
+    {
+      "name": "spring.stream.mqtt.host",
+      "type": "java.lang.String",
+      "description": "Mqtt host."
+    },
+    {
+      "name": "spring.stream.mqtt.client-id-prefix",
+      "type": "java.lang.String",
+      "description": "Mqtt client id prefix."
+    },
+    {
+      "name": "spring.stream.mqtt.username",
+      "type": "java.lang.String",
+      "description": "Mqtt username."
+    },
+    {
+      "name": "spring.stream.mqtt.password",
+      "type": "java.lang.String",
+      "description": "Mqtt password."
+    },
+    {
+      "name": "spring.stream.mqtt.timeout",
+      "type": "java.lang.Integer",
+      "description": "Mqtt timeout."
+    },
+    {
+      "name": "spring.stream.mqtt.keepalive",
+      "type": "java.lang.Integer",
+      "description": "Mqtt keepalive."
+    },
+    {
+      "name": "app.chat.mqtt.users_topic_prefix",
+      "type": "java.lang.String",
+      "description": "users topic prefix for mqtt."
+    },
+    {
+      "name": "app.chat.mqtt.users-inbox-topic-suffix",
+      "type": "java.lang.String",
+      "description": "Description for app.chat.mqtt.users-inbox-topic-suffix."
+    },
+    {
+      "name": "app.chat.mqtt.users-outbox-topic-suffix",
+      "type": "java.lang.String",
+      "description": "Description for app.chat.mqtt.users-outbox-topic-suffix."
+    },
+    {
+      "name": "app.chat.mqtt.host",
+      "type": "java.lang.String",
+      "description": "hostname for mqtt in mqtt connection details."
+    }
+  ]
+}

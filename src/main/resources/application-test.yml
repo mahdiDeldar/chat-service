@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://172.17.0.1:5432/shervin
+  stream:
+    mqtt:
+      host: tcp://172.17.0.1:1883
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.17.0.1:8761/eureka
+
+app:
+  host: https://test.elegant-designs.net
+  chat:
+    mqtt:
+      host: tcp://test.elegant-designs.net:1883
