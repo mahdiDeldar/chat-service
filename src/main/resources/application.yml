@@ -2,7 +2,7 @@ spring:
   application:
     name: chat-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/shervin
+    url: jdbc:postgresql://test.elegant-designs.net:5432/shervin
     username: shervin
     initialization-mode: always
   jpa:
@@ -21,7 +21,7 @@ spring:
     default-property-inclusion: non_null
   stream:
     mqtt:
-      host: tcp://localhost:1883
+      host: tcp://test.elegant-designs.net:1883
       client-id-prefix: ${spring.application.name}
       username: mqtt_admin
       timeout: 1000
@@ -31,7 +31,7 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://172.17.0.1:8761/eureka
+      defaultZone: http://test.elegant-designs.net:8761/eureka
 
 #logging:
 #  level:

@@ -17,6 +17,4 @@ public interface UserEndpoint {
     @GetMapping("{id}")
     @Headers("Content-Type: application/json")
     UserModel getUserDetails(@PathVariable("id") String id);
-
-
 }

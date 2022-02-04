@@ -62,4 +62,6 @@ public interface ChatRepository extends AbstractRepository<Chat> {
     @Query("select count(c) from Chat c where c.secondUser.id = :userId and c.secondUserUnseenMessagesCount > 0")
     long countSecondUserUnseenChats(String userId);
 
+    @Query("select c from Chat c where c.firstUser.id = :firstUserId")
+    Optional<Chat> findChatsFirstUser(@Param("firstUserId") String userid);
 }

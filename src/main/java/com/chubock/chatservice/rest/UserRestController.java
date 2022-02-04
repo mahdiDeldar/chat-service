@@ -3,6 +3,7 @@ package com.chubock.chatservice.rest;
 import com.chubock.chatservice.model.UserModel;
 import com.chubock.chatservice.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,4 +31,9 @@ public class UserRestController {
         return userService.updateProfile(model);
     }
 
+    @GetMapping("/terminateUser/{id}")
+    @Operation(summary = "delete user and all dependencies of it")
+    public ResponseEntity<Boolean> deleteUser(@PathVariable(value = "id") String id) {
+        return userService.deleteUser(id);
+    }
 }
