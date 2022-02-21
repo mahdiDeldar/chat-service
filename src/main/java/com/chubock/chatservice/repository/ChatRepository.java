@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ChatRepository extends AbstractRepository<Chat> {
@@ -62,6 +63,6 @@ public interface ChatRepository extends AbstractRepository<Chat> {
     @Query("select count(c) from Chat c where c.secondUser.id = :userId and c.secondUserUnseenMessagesCount > 0")
     long countSecondUserUnseenChats(String userId);
 
-    @Query("select c from Chat c where c.firstUser.id = :firstUserId or c.secondUser.id = :firstUserId")
-    Optional<Chat> findChatsFirstUser(@Param("firstUserId") String userid);
+    @Query("select c from Chat c where c.firstUser.id = :userid or c.secondUser.id = :userid")
+    List<Chat> findChatsFirstUser(@Param("userid") String userid);
 }

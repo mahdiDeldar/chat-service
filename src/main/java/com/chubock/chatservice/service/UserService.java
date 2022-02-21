@@ -70,13 +70,17 @@ public class UserService {
         if (!user.isPresent()) {
             return new ResponseEntity<Boolean>(Boolean.FALSE, HttpStatus.OK);
         }
-        Chat chat = chatRepository.findChatsFirstUser(id).get();
-        chat.setLastMessage(null);
-        List<Message> messageList = messageRepository.findAllMessageByChat(chat.getId());
-        if (!messageList.isEmpty()) {
-            messageList.forEach(message -> messageRepository.delete(message));
+        List<Chat> chatList = chatRepository.findChatsFirstUser(id);
+        if (!chatList.isEmpty()) {
+            chatList.forEach(chat -> {
+                chat.setLastMessage(null);
+                List<Message> messageList = messageRepository.findAllMessageByChat(chat.getId());
+                if (!messageList.isEmpty()) {
+                    messageList.forEach(message -> messageRepository.delete(message));
+                }
+                chatRepository.delete(chat);
+            });
         }
-        chatRepository.delete(chat);
         userRepository.delete(user.get());
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
