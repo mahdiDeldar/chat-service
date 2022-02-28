@@ -3,9 +3,11 @@ package com.chubock.chatservice.service;
 import com.chubock.chatservice.endpoint.UserEndpoint;
 import com.chubock.chatservice.entity.Chat;
 import com.chubock.chatservice.entity.Message;
+import com.chubock.chatservice.entity.MqttConnectionDetail;
 import com.chubock.chatservice.entity.User;
 import com.chubock.chatservice.model.UserModel;
 import com.chubock.chatservice.repository.ChatRepository;
+import com.chubock.chatservice.repository.MQTTConnectionDetailRepository;
 import com.chubock.chatservice.repository.MessageRepository;
 import com.chubock.chatservice.repository.UserRepository;
 import com.ctc.wstx.util.StringUtil;
@@ -28,11 +30,16 @@ public class UserService {
 
     private final MessageRepository messageRepository;
 
-    public UserService(UserRepository userRepository, UserEndpoint userEndpoint, ChatRepository chatRepository, MessageRepository messageRepository) {
+    private final MQTTConnectionDetailRepository mqttConnectionDetailRepository;
+
+    public UserService(UserRepository userRepository, UserEndpoint userEndpoint,
+                       ChatRepository chatRepository, MessageRepository messageRepository,
+                       MQTTConnectionDetailRepository mqttConnectionDetailRepository) {
         this.userRepository = userRepository;
         this.userEndpoint = userEndpoint;
         this.chatRepository = chatRepository;
         this.messageRepository = messageRepository;
+        this.mqttConnectionDetailRepository = mqttConnectionDetailRepository;
     }
 
     @Transactional
@@ -80,6 +87,10 @@ public class UserService {
                 }
                 chatRepository.delete(chat);
             });
+        }
+        Optional<MqttConnectionDetail> mqtdetail = mqttConnectionDetailRepository.findByUser(user.get());
+        if (mqtdetail.isPresent()) {
+            mqttConnectionDetailRepository.delete(mqtdetail.get());
         }
         userRepository.delete(user.get());
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
