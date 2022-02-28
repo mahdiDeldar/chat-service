@@ -70,7 +70,7 @@ public class UserService {
         if (!user.isPresent()) {
             return new ResponseEntity<Boolean>(Boolean.FALSE, HttpStatus.OK);
         }
-        List<Chat> chatList = chatRepository.findChatsFirstUser(id);
+        List<Chat> chatList = chatRepository.findByFirstUserOrSecondUser(user.get(), user.get());
         if (!chatList.isEmpty()) {
             chatList.forEach(chat -> {
                 chat.setLastMessage(null);

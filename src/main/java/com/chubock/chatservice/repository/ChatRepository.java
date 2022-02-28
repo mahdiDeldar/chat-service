@@ -65,4 +65,6 @@ public interface ChatRepository extends AbstractRepository<Chat> {
 
     @Query("select c from Chat c where c.firstUser.id = :userid or c.secondUser.id = :userid")
     List<Chat> findChatsFirstUser(@Param("userid") String userid);
+
+    List<Chat> findByFirstUserOrSecondUser(User firstUser,User secondUser);
 }
