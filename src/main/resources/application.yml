@@ -42,7 +42,7 @@ server:
 
 firebase:
   app: keys
-  credentials: /etc/keys/keys-310815-firebase-adminsdk-az7vq-3f1b75af96.json
+  credentials: /opt/keys/keys-310815-firebase-adminsdk-az7vq-3f1b75af96.json
 
 app:
   host: http://localhost:8080
