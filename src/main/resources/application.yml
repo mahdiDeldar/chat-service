@@ -2,8 +2,8 @@ spring:
   application:
     name: chat-service
   datasource:
-    url: jdbc:postgresql://test.elegant-designs.net:5432/shervin
-    username: shervin
+    url: jdbc:postgresql://db.privatenetwork:5432/shervin
+    username: housemate
     initialization-mode: always
   jpa:
     properties:
@@ -21,9 +21,9 @@ spring:
     default-property-inclusion: non_null
   stream:
     mqtt:
-      host: tcp://test.elegant-designs.net:1883
+      host: tcp://mqtt.privatenetwork:1883
       client-id-prefix: ${spring.application.name}
-      username: mqtt_admin
+      username: housemate_app
       timeout: 1000
 
 eureka:
@@ -31,7 +31,7 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://test.elegant-designs.net:8761/eureka
+      defaultZone: http://discovery:8761/eureka
 
 #logging:
 #  level:
@@ -42,14 +42,14 @@ server:
 
 firebase:
   app: keys
-  credentials: /etc/keys/keys-310815-firebase-adminsdk-az7vq-3f1b75af96.json
+  credentials: /opt/keys/keys-310815-firebase-adminsdk-az7vq-3f1b75af96.json
 
 app:
   host: http://localhost:8080
   url: ${app.host}/${spring.application.name}
   chat:
     mqtt:
-      host: tcp://localhost:1883
+      host: tcp://mqtt.privatenetwork:1883
       users-topic-prefix: /chat_service/users/
       users-inbox-topic-suffix: /inbox
       users-outbox-topic-suffix: /outbox
