@@ -2,6 +2,7 @@ package com.chubock.chatservice.model;
 
 import com.chubock.chatservice.entity.User;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;

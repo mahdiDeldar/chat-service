@@ -23,7 +23,8 @@ public class User {
     private String id;
     private String username;
     private String fullName;
-    private String imageUrl;
+    @Builder.Default
+    private String imageUrl = "";
 
     private String firebaseToken;
 
