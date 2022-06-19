@@ -39,6 +39,7 @@ eureka:
 #    org: debug
 server:
   forward-headers-strategy: framework
+  port: 8081
 
 firebase:
   app: keys
